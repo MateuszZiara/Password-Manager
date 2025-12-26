@@ -1,0 +1,28 @@
+@model Projekt_AB.Models.LoginViewModel
+@{
+    ViewData["Title"] = "Logowanie";
+    Layout = "_AuthLayout";
+}
+
+<h2 class="text-center mb-4">Witaj ponownie</h2>
+<form asp-action="Login" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" placeholder="nazwa@przyklad.com" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" class="form-control" placeholder="••••••••" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary w-100 mb-3">Zaloguj się</button>
+    <div class="text-center">
+        <a asp-action="Register" class="text-decoration-none">Utwórz konto</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,35 @@
+@model Projekt_AB.Models.MfaSetupViewModel
+@{
+    ViewData["Title"] = "Konfiguracja MFA";
+    Layout = "_AuthLayout";
+}
+
+<h2 class="text-center mb-4">Skonfiguruj Authenticator</h2>
+<p class="text-center text-muted small">Zeskanuj ten kod QR aplikacją Microsoft Authenticator lub Google Authenticator</p>
+
+<div class="text-center mb-4">
+    <div id="qrcode" class="d-flex justify-content-center"></div>
+</div>
+
+<div class="text-center mb-3">
+    <small class="text-muted">Lub wpisz ten kod ręcznie: <strong>@Model.SharedKey</strong></small>
+</div>
+
+<form asp-action="EnableAuthenticator" method="post">
+    <div class="mb-3">
+        <label class="form-label">Kod weryfikacyjny</label>
+        <input name="Code" class="form-control text-center" placeholder="123456" style="letter-spacing: 2px;" autocomplete="off" />
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Zweryfikuj i włącz</button>
+</form>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script type="text/javascript">
+        new QRCode(document.getElementById("qrcode"), {
+            text: "@Html.Raw(Model.AuthenticatorUri)",
+            width: 150,
+            height: 150
+        });
+    </script>
+}

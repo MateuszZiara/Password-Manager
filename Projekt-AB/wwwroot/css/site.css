@@ -1,0 +1,13 @@
+/* Minimal cleanup */
+body {
+  margin-bottom: 60px;
+  background-color: #f8f9fa;
+}
+
+.card {
+    border: none;
+    transition: transform 0.2s;
+}
+.card:hover {
+    transform: translateY(-2px);
+}

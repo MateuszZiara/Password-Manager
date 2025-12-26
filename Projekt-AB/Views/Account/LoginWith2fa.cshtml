@@ -1,0 +1,18 @@
+@model Projekt_AB.Models.LoginWith2faViewModel
+@{
+    ViewData["Title"] = "Weryfikacja dwuetapowa";
+    Layout = "_AuthLayout";
+}
+
+<h2 class="text-center mb-4">Weryfikacja 2FA</h2>
+<p class="text-center text-muted">Wprowadź kod z aplikacji uwierzytelniającej.</p>
+<form asp-action="LoginWith2fa" method="post">
+    <input asp-for="RememberMe" type="hidden" />
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+    <div class="mb-3">
+        <label asp-for="TwoFactorCode" class="form-label">Kod Authenticatora</label>
+        <input asp-for="TwoFactorCode" class="form-control text-center" style="letter-spacing: 5px; font-size: 1.5rem;" autocomplete="off" />
+        <span asp-validation-for="TwoFactorCode" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Zweryfikuj</button>
+</form>
